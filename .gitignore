@@ -1,0 +1,20 @@
+# 系統檔案
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# AGENT 相關
+AGENTS.md
+
+# 輸出的 Excel 檔案
+*.xlsx
+*.xls
+*.xlsm
+
+# 暫存與備份
+*.tmp
+*.bak
+~$*
+
+# VSCode 設定
+.vscode/
