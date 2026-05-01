@@ -1,0 +1,19 @@
+# Generated Excel workbook artifacts
+workbooks\*.xlsm
+workbooks\*.xlsx
+workbooks\*.xlsb
+workbooks\*.xlam
+
+# Copilot/GitHub metadata
+.github\
+
+# Office temporary and backup files
+~$*.xls*
+*.xlk
+
+# Generic local noise
+*.tmp
+*.temp
+*.bak
+Thumbs.db
+Desktop.ini
