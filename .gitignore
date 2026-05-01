@@ -1,12 +1,6 @@
-# Generated Excel workbook artifacts
-workbooks/*.xlsm
-workbooks/*.xlsx
-workbooks/*.xlsb
-workbooks/*.xlam
-
 # Copilot/GitHub metadata
-.github/*
-!.github/copilot-instructions.md
+.github/
+
 
 # Office temporary and backup files
 ~$*.xls*
