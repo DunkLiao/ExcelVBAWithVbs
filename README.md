@@ -1,6 +1,6 @@
 # 📊 ExcelVBAWithVbs
 
-使用 VBScript（`.vbs`）從命令列自動化 Microsoft Office，無需開啟 VBA 編輯器，直接以 `cscript` 執行即可。
+使用 VBScript（`.vbs`）從 Windows 命令列自動化 Microsoft Office，無需開啟 VBA 編輯器，所有腳本皆可透過 `cscript` 直接執行。搭配 VBA 模組庫（`.bas` / `.frm`），提供可匯入至個人活頁簿或 Office 專案的通用工具集。
 
 ---
 
@@ -10,27 +10,38 @@
 cscript <資料夾>\<檔案名稱>.vbs
 ```
 
+> 請使用 `cscript`（而非 `wscript`），以便在命令提示字元中看到執行結果。  
+> 輸出檔案（`.xlsx` 等）預設儲存至**桌面**。
+
 ---
 
 ## 📁 專案結構
 
-| 資料夾 | 說明 |
+### VBScript 自動化腳本
+
+| 資料夾 | 內容摘要 |
 | --- | --- |
-| 📂 [Excel](./Excel) | Excel 自動化基礎範例 |
-| 📈 [charts](./charts) | 20 種 Excel 圖表產生範例 |
-| 🧩 [模組](./模組) | 可重用的 VBA 工具模組庫 |
-| 📬 [模組/Outlook](./模組/Outlook) | Outlook 郵件自動化模組 |
-| 🪟 [模組/視窗](./模組/視窗) | 自訂表單（UserForm）範本 |
-| ⚙️ [模組/組態讀取](./模組/組態讀取) | 組態載入與報表產生模組 |
-| 📋 [模組/個人工作活頁簿](./模組/個人工作活頁簿) | 個人工作活頁簿專用模組 |
+| 📂 [Excel](./Excel) | Excel 基礎自動化範例（建立活頁簿、填入資料、插入圖表） |
+| 📈 [charts](./charts) | 20 種圖表類型的完整範例，涵蓋直條、折線、圓餅、散佈、泡泡、雷達、曲面等 |
+| 📋 [PivotTable](./PivotTable) | 20 種樞紐分析表功能範例，涵蓋篩選、群組、計算欄位、排序、交叉分析篩選器、百分比、排名等進階操作 |
+
+### VBA 模組庫
+
+| 資料夾 | 內容摘要 |
+| --- | --- |
+| 🧩 [模組](./模組) | 40+ 個可重用的 `.bas` 工具模組，涵蓋檔案 I/O、資料庫連線、字串處理、列印、PDF、正規表示式、工作表管理等 |
+| 📬 [模組/Outlook](./模組/Outlook) | Outlook 自動化模組，包含寄信、自動回覆、附件處理、郵件管理等 |
+| 🪟 [模組/視窗](./模組/視窗) | 自訂 UserForm 表單範本（`.frm`） |
+| ⚙️ [模組/組態讀取](./模組/組態讀取) | 組態檔載入、ODBC 連線與報表（日/月/季）自動產生模組 |
+| 📋 [模組/個人工作活頁簿](./模組/個人工作活頁簿) | 個人工作活頁簿專用的快捷工具模組 |
 
 ---
 
 ## 🛠️ 環境需求
 
 - Windows 作業系統
-- Microsoft Excel / Outlook（已安裝）
-- Windows Script Host（Windows 內建，無需額外安裝）
+- Microsoft Excel / Outlook（已安裝於本機）
+- Windows Script Host（WSH，Windows 內建，無需額外安裝）
 
 ---
 
