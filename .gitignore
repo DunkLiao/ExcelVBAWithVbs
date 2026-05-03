@@ -3,9 +3,6 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
-# AGENT 相關
-AGENTS.md
-
 # 輸出的 Excel 檔案
 *.xlsx
 *.xls
