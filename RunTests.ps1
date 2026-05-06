@@ -31,6 +31,26 @@ function Write-Pass($text) { Write-Host "  [PASS] $text" -ForegroundColor Green 
 function Write-Fail($text) { Write-Host "  [FAIL] $text" -ForegroundColor Red }
 function Write-Info($text) { Write-Host "  $text" -ForegroundColor Gray }
 
+function Get-TestCounts($output) {
+    # pytest summary line 格式：
+    #   "729 passed in 1.07s"
+    #   "3 failed, 726 passed in 2.06s"
+    #   "5 failed, 720 passed, 4 error in 3.12s"
+    $sum = $output | Where-Object { $_ -match "\d+ passed" } | Select-Object -Last 1
+    $passed = 0; $failed = 0; $errors = 0
+    if ($sum -match "(\d+) passed")  { $passed = [int]$Matches[1] }
+    if ($sum -match "(\d+) failed")  { $failed = [int]$Matches[1] }
+    if ($sum -match "(\d+) error")   { $errors = [int]$Matches[1] }
+    $total = $passed + $failed + $errors
+    return @{ Total = $total; Passed = $passed; Failed = $failed; Errors = $errors; Line = $sum }
+}
+
+function Write-TestStats($label, $counts) {
+    $t = $counts.Total; $p = $counts.Passed; $f = $counts.Failed + $counts.Errors
+    Write-Host ("  {0,-10} 總計: {1,4}   通過: {2,4}   失敗: {3,4}" -f $label, $t, $p, $f) `
+        -ForegroundColor $(if ($f -eq 0) { "Green" } else { "Red" })
+}
+
 # ---------------------------------------------------------------------------
 Write-Header "VBA Automated Test Runner"
 Write-Info "Time : $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
@@ -63,6 +83,7 @@ $p1Args = if ($Verbose) {
 
 $p1Out  = & python -m pytest @p1Args 2>&1
 $p1Exit = $LASTEXITCODE
+$p1Counts = Get-TestCounts $p1Out
 
 $p1Sum = ($p1Out | Where-Object { $_ -match "passed|failed|error" } | Select-Object -Last 1)
 
@@ -79,6 +100,7 @@ if ($p1Exit -ne 0) {
 }
 
 Write-Host ""
+Write-TestStats "Phase 1" $p1Counts
 if ($p1Exit -eq 0) {
     Write-Pass "Phase 1 ALL PASSED : $p1Sum"
 } else {
@@ -103,6 +125,7 @@ if ($IncludeExcel) {
 
     $p2Out  = & python -m pytest @p2Args 2>&1
     $p2Exit = $LASTEXITCODE
+    $p2Counts = Get-TestCounts $p2Out
 
     $p2Sum = ($p2Out | Where-Object { $_ -match "passed|failed|error|skipped" } | Select-Object -Last 1)
 
@@ -114,6 +137,7 @@ if ($IncludeExcel) {
     }
 
     Write-Host ""
+    Write-TestStats "Phase 2" $p2Counts
     if ($p2Exit -eq 0) {
         Write-Pass "Phase 2 ALL PASSED : $p2Sum"
     } else {
@@ -129,6 +153,21 @@ if ($IncludeExcel) {
 Write-Header "Test Summary"
 
 $overall = if ($p1Exit -ne 0 -or $p2Exit -ne 0) { 1 } else { 0 }
+
+# 合計所有 Phase 的數字
+$p2Total  = if ($IncludeExcel) { $p2Counts.Total }  else { 0 }
+$p2Pass   = if ($IncludeExcel) { $p2Counts.Passed } else { 0 }
+$p2Fail   = if ($IncludeExcel) { $p2Counts.Failed + $p2Counts.Errors } else { 0 }
+
+$totalAll  = $p1Counts.Total  + $p2Total
+$passedAll = $p1Counts.Passed + $p2Pass
+$failedAll = ($p1Counts.Failed + $p1Counts.Errors) + $p2Fail
+
+Write-Host ""
+Write-Host ("  {0,-12} {1,6}" -f "測試總數：", $totalAll)  -ForegroundColor White
+Write-Host ("  {0,-12} {1,6}" -f "通過數：",   $passedAll) -ForegroundColor Green
+Write-Host ("  {0,-12} {1,6}" -f "失敗數：",   $failedAll) -ForegroundColor $(if ($failedAll -eq 0) { "Green" } else { "Red" })
+Write-Host ""
 
 if ($overall -eq 0) {
     Write-Host "  [OK] All tests passed!" -ForegroundColor Green
