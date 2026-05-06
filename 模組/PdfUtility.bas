@@ -31,7 +31,7 @@ Function MergePDFs(ByVal sourceFolder As String, ByVal fileList As String, ByVal
     a = Split(fileList, ",")
     ReDim PartDocs(0 To UBound(a))
 
-    On Error GoTo exit_
+    On Error GoTo ErrHandler
     If Len(Dir(destFile)) Then Kill destFile
     For i = 0 To UBound(a)
         ' Check PDF file presence
@@ -66,7 +66,7 @@ Function MergePDFs(ByVal sourceFolder As String, ByVal fileList As String, ByVal
         End If
     End If
 
-exit_:
+ErrHandler:
 
     ' Inform about error/success
     If Err Then
@@ -95,7 +95,7 @@ Function MergePDFsWithList(ByRef fileList() As Variant, ByVal destFile As String
 
     ReDim PartDocs(0 To UBound(fileList))
 
-    On Error GoTo exit_
+    On Error GoTo ErrHandler
     If Len(Dir(destFile)) Then Kill destFile
     For i = 0 To UBound(fileList)
         ' Check PDF file presence
@@ -130,7 +130,7 @@ Function MergePDFsWithList(ByRef fileList() As Variant, ByVal destFile As String
         End If
     End If
 
-exit_:
+ErrHandler:
 
     ' Inform about error/success
     If Err Then

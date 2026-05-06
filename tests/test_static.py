@@ -154,13 +154,45 @@ def test_with_end_with_paired(bas_file):
 
 
 # ---------------------------------------------------------------------------
+# 輔助：合併 VBA 續行符號 _ 的邏輯行
+# ---------------------------------------------------------------------------
+
+def _join_continuation_lines(lines: list[str]) -> list[str]:
+    """將以 _ 結尾的行與下一行合併，還原成完整的邏輯行後再做分析。"""
+    result = []
+    i = 0
+    while i < len(lines):
+        s = lines[i]
+        stripped = s.strip()
+        if stripped.startswith("'"):
+            result.append(s)
+            i += 1
+            continue
+        code = stripped.split("'")[0]
+        while code.rstrip().endswith("_"):
+            code = code.rstrip()[:-1].rstrip()
+            i += 1
+            if i < len(lines):
+                next_stripped = lines[i].strip()
+                if next_stripped.startswith("'"):
+                    break
+                code = code + " " + next_stripped.split("'")[0]
+            else:
+                break
+        result.append(code)
+        i += 1
+    return result
+
+
+# ---------------------------------------------------------------------------
 # 測試：If / End If 成對（排除單行 If）
 # ---------------------------------------------------------------------------
 
 def test_if_end_if_paired(bas_file):
     """多行 If...Then 與 End If 必須數量相同（單行 If...Then...Else 不計）。"""
     data = read_bytes(bas_file)
-    lines = decode_cp950(data)
+    raw_lines = decode_cp950(data)
+    lines = _join_continuation_lines(raw_lines)
     opens = 0
     closes = 0
     for line in lines:

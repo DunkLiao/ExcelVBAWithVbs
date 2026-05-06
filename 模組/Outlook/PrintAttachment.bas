@@ -37,7 +37,7 @@ Option Explicit
                                                          ByVal lpDirectory As String, ByVal nShowCmd As Long) As Long
 #End If
 
-Sub A_測試()
+Sub A_Test()
     Sleep (3000)
     MsgBox ("!!")
 End Sub
@@ -132,13 +132,13 @@ Function DealWithZipCryFiles(ByVal Subject As String, ByVal SFName As String, By
     End If
 End Function
 
-Sub A_Step2_代理秉志()
+Sub A_Step2_AgentBenZhi()
     A_Step1_SavePlaceAttachments ("01.秉志")
 End Sub
-Sub A_Step2_代理蘭錦()
+Sub A_Step2_AgentLanJin()
     A_Step1_SavePlaceAttachments ("02.蘭錦")
 End Sub
-Sub A_Step2_代理振富()
+Sub A_Step2_AgentZhenFu()
     A_Step1_SavePlaceAttachments ("03.振富")
 End Sub
 
