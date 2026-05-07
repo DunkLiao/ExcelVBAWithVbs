@@ -3,8 +3,8 @@
 
 | 功能說明 | 對應資料夾 |
 |----------|------------|
-| 一般圖表 | `\模組\Charts` |
-| Excel公式 | `\模組\Formula` |
+| 一般圖表 | `\模組\ChartsNormal` |
+| Excel公式 | `\模組\FormulaCreate` |
 | 檔案合併 | `\模組\FileMerge` |
 | 檔案切割 | `\模組\FileSplit` |
 | 跨表合併資料 | `\模組\MergeDataAcrossSheets` |
