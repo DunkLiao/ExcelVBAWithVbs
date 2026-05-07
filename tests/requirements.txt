@@ -1,0 +1,5 @@
+# Phase 1 靜態檢查（不需要 Excel）
+pytest
+
+# Phase 2 Excel COM 動態編譯（需桌面版 Excel）
+pywin32
