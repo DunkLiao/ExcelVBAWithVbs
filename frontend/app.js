@@ -22,6 +22,28 @@
   const fileView     = document.getElementById("file-view");
   const statsEl      = document.getElementById("stats");
   const themeBtn     = document.getElementById("theme-toggle");
+  const sidebar      = document.getElementById("sidebar");
+  const sidebarToggle = document.getElementById("sidebar-toggle");
+  const sidebarOverlay = document.getElementById("sidebar-overlay");
+
+  /* ── 側欄 drawer（手機用） ─────────────────────── */
+  function isMobile() { return window.innerWidth <= 768; }
+
+  function openSidebar() {
+    sidebar.classList.add("open");
+    sidebarOverlay.classList.add("visible");
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove("open");
+    sidebarOverlay.classList.remove("visible");
+  }
+
+  sidebarToggle.addEventListener("click", function () {
+    if (sidebar.classList.contains("open")) { closeSidebar(); } else { openSidebar(); }
+  });
+
+  sidebarOverlay.addEventListener("click", closeSidebar);
 
   /* ── 主題切換 ──────────────────────────────────── */
   var DARK = "dark";
@@ -127,6 +149,9 @@
     if (itemEl) itemEl.classList.add("active");
 
     activeFile = file;
+
+    // 手機上選取檔案後自動關閉 sidebar
+    if (isMobile()) { closeSidebar(); }
 
     var content = file.content || "";
     var displayContent = highlightKeyword

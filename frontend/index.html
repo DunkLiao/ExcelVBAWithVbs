@@ -11,7 +11,8 @@
 <body>
   <header class="site-header">
     <div class="header-left">
-      <span class="logo">📦 Excel VBA 模組庫</span>
+      <button id="sidebar-toggle" class="btn-sidebar-toggle" title="開關目錄">☰</button>
+      <span class="logo">❤️ Excel VBA 模組庫</span>
       <span id="stats" class="stats"></span>
     </div>
     <div class="search-wrap">
@@ -28,6 +29,9 @@
   </header>
 
   <div class="layout">
+    <!-- 側欄遮罩（手機用） -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
     <!-- 左側目錄 -->
     <aside class="sidebar" id="sidebar">
       <div id="tree-panel">
@@ -45,6 +49,14 @@
       </div>
     </main>
   </div>
+
+  <footer class="site-footer">
+    <span>免責申明：基於公開資料，僅供參考，不構成建議</span>
+    <span class="footer-sep">·</span>
+    <span>資料來源：網頁公開資訊</span>
+    <span class="footer-sep">·</span>
+    <span>版權所有：© Dunk</span>
+  </footer>
 
   <script src="app.js"></script>
 </body>
