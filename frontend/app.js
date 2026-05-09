@@ -55,7 +55,7 @@
     }
 
     downloadAllBtn.disabled = true;
-    downloadAllBtn.textContent = "⏳ 產生中…";
+    downloadAllBtn.innerHTML = "⏳ 產生中…";
 
     // 使用 setTimeout 讓 UI 更新後再執行耗時操作
     setTimeout(function () {
@@ -90,12 +90,12 @@
           alert("ZIP 產生失敗：" + err.message);
         }).finally(function () {
           downloadAllBtn.disabled = false;
-          downloadAllBtn.textContent = "⬇ 全部下載";
+          downloadAllBtn.innerHTML = '<span class="btn-icon">⬇</span><span class="btn-text"> 全部下載</span>';
         });
       } catch (err) {
         alert("打包失敗：" + err.message);
         downloadAllBtn.disabled = false;
-        downloadAllBtn.textContent = "⬇ 全部下載";
+        downloadAllBtn.innerHTML = '<span class="btn-icon">⬇</span><span class="btn-text"> 全部下載</span>';
       }
     }, 50);
   });

@@ -470,8 +470,9 @@ mark {
   }
   .btn-theme { flex-shrink: 0; }
   .btn-sidebar-toggle { display: flex; }
-  /* 手機上全部下載按鈕縮短 */
-  .btn-download-all { padding: 0 8px; font-size: 0.78rem; }
+  /* 手機上全部下載按鈕縮為圖示，避免遮蓋標題 */
+  .btn-download-all { width: 34px; padding: 0; font-size: 1rem; }
+  .btn-download-all .btn-text { display: none; }
 
   /* Layout 需跟 header 高度同步 */
   .layout {
