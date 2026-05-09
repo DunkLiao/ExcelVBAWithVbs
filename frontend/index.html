@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excel VBA 模組庫</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- app-data.js 由 build.py 產生，供 file:// 本地開啟使用 -->
+  <script src="app-data.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <span class="logo">📦 Excel VBA 模組庫</span>
+      <span id="stats" class="stats"></span>
+    </div>
+    <div class="search-wrap">
+      <input
+        type="search"
+        id="search-input"
+        placeholder="搜尋檔案名稱或程式碼內容…"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="search-clear" class="btn-clear" title="清除搜尋" hidden>✕</button>
+    </div>
+    <button id="theme-toggle" class="btn-theme" title="切換白天/黑夜模式">🌙</button>
+  </header>
+
+  <div class="layout">
+    <!-- 左側目錄 -->
+    <aside class="sidebar" id="sidebar">
+      <div id="tree-panel">
+        <!-- 目錄樹由 app.js 動態產生 -->
+      </div>
+    </aside>
+
+    <!-- 右側預覽 -->
+    <main class="content" id="content">
+      <div id="search-results" class="search-results" hidden></div>
+      <div id="file-view" class="file-view">
+        <div class="placeholder">
+          <p>👈 從左側選取模組，或使用搜尋框查詢</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
