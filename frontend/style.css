@@ -87,6 +87,30 @@ html, body {
   white-space: nowrap;
 }
 
+/* Download all button */
+.btn-download-all {
+  flex-shrink: 0;
+  height: 34px;
+  padding: 0 12px;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+}
+.btn-download-all:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+.btn-download-all:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Theme toggle */
 .btn-theme {
   flex-shrink: 0;
@@ -446,6 +470,8 @@ mark {
   }
   .btn-theme { flex-shrink: 0; }
   .btn-sidebar-toggle { display: flex; }
+  /* 手機上全部下載按鈕縮短 */
+  .btn-download-all { padding: 0 8px; font-size: 0.78rem; }
 
   /* Layout 需跟 header 高度同步 */
   .layout {

@@ -22,6 +22,7 @@
   const fileView     = document.getElementById("file-view");
   const statsEl      = document.getElementById("stats");
   const themeBtn     = document.getElementById("theme-toggle");
+  const downloadAllBtn = document.getElementById("download-all");
   const sidebar      = document.getElementById("sidebar");
   const sidebarToggle = document.getElementById("sidebar-toggle");
   const sidebarOverlay = document.getElementById("sidebar-overlay");
@@ -44,6 +45,60 @@
   });
 
   sidebarOverlay.addEventListener("click", closeSidebar);
+
+  /* ── 全部下載（打包成 ZIP） ────────────────────── */
+  downloadAllBtn.addEventListener("click", function () {
+    if (!allData) { alert("資料尚未載入，請稍後再試。"); return; }
+    if (typeof JSZip === "undefined") {
+      alert("JSZip 函式庫載入失敗，請確認網路連線後重試。");
+      return;
+    }
+
+    downloadAllBtn.disabled = true;
+    downloadAllBtn.textContent = "⏳ 產生中…";
+
+    // 使用 setTimeout 讓 UI 更新後再執行耗時操作
+    setTimeout(function () {
+      try {
+        var zip = new JSZip();
+
+        allData.modules.forEach(function (folder) {
+          folder.files.forEach(function (file) {
+            if (!file.content_b64) return;
+            // atob → binary string → Uint8Array（保留 CP950 原始 bytes）
+            var binary = atob(file.content_b64);
+            var bytes = new Uint8Array(binary.length);
+            for (var i = 0; i < binary.length; i++) {
+              bytes[i] = binary.charCodeAt(i);
+            }
+            // ZIP 內路徑：資料夾名/檔名
+            var zipPath = folder.folder + "/" + file.name;
+            zip.file(zipPath, bytes);
+          });
+        });
+
+        zip.generateAsync({ type: "blob" }).then(function (blob) {
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.href = url;
+          a.download = "ExcelVBA_模組庫.zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }).catch(function (err) {
+          alert("ZIP 產生失敗：" + err.message);
+        }).finally(function () {
+          downloadAllBtn.disabled = false;
+          downloadAllBtn.textContent = "⬇ 全部下載";
+        });
+      } catch (err) {
+        alert("打包失敗：" + err.message);
+        downloadAllBtn.disabled = false;
+        downloadAllBtn.textContent = "⬇ 全部下載";
+      }
+    }, 50);
+  });
 
   /* ── 主題切換 ──────────────────────────────────── */
   var DARK = "dark";

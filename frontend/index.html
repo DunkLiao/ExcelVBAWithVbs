@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="style.css" />
   <!-- app-data.js 由 build.py 產生，供 file:// 本地開啟使用 -->
   <script src="app-data.js"></script>
+  <!-- JSZip：全部下載打包用 -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -25,6 +27,7 @@
       />
       <button id="search-clear" class="btn-clear" title="清除搜尋" hidden>✕</button>
     </div>
+    <button id="download-all" class="btn-download-all" title="下載全部 VBA 模組（ZIP）">⬇ 全部下載</button>
     <button id="theme-toggle" class="btn-theme" title="切換白天/黑夜模式">🌙</button>
   </header>
 
