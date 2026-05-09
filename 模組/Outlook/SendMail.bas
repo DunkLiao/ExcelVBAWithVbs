@@ -4,7 +4,7 @@ Option Explicit
 '專案名稱: 全委帳務處理
 '功能描述: 寄送股款信件
 '
-'版權所有: 台灣銀行
+'版權所有: Dunk
 '程式撰寫: Dunk
 '撰寫日期：2017/6/13
 '
@@ -21,10 +21,7 @@ Sub B_Step1_SendMailToStock()
         Exit Sub
     End If
 
-    '正式使用
-    sender = "134719@mail.bot.com.tw;120750@mail.bot.com.tw;097911@mail.bot.com.tw;104860@mail.bot.com.tw;093412@mail.bot.com.tw;787075@mail.bot.com.tw;189206@mail.bot.com.tw;131705@mail.bot.com.tw;111680@mail.bot.com.tw"
-    '測試使用
-    'sender = "134719@mail.bot.com.tw"
+    sender = "abc@def.com"
 
     SendMailToStock tradeDay:=tradeDay, sender:=sender
 End Sub
@@ -38,11 +35,11 @@ Function SendMailToStock(ByVal tradeDay As String, ByVal sender As String)
     Set OutlookApp = New Outlook.Application
     Set newMail = OutlookApp.CreateItem(olMailItem)
     With newMail
-        .Subject = tradeDay & "股款_冠智"
+        .Subject = tradeDay & "股款"
         .To = sender
         Set myAttachments = newMail.Attachments
-        myAttachments.Add "D:\廖冠智" & tradeDay & "取款.zip"
-        myAttachments.Add "D:\廖冠智" & tradeDay & "匯款.zip"
+        myAttachments.Add "D:\" & tradeDay & "取款.zip"
+        myAttachments.Add "D:\" & tradeDay & "匯款.zip"
         .Send
     End With
     MsgBox "郵件發送成功!"

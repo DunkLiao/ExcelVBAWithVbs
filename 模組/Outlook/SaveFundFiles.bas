@@ -4,7 +4,7 @@ Option Explicit
 '專案名稱: 期信基金
 '功能描述: 儲存期貨對帳單檔案
 '
-'版權所有: 台灣銀行
+'版權所有: Dunk
 '程式撰寫: Dunk
 '撰寫日期：2018/2/7
 '
@@ -16,7 +16,7 @@ Option Explicit
 Function SaveFundFile(ByVal sourceFileName As String)
     Dim sourceFolder, destFolder, destFileName As String
     '目的資料夾
-    destFolder = "Z:\全委組帳務\帳務--新制轉檔報表\冠智\期信基金\對帳單"
+    destFolder = "Z:\全委組帳務\帳務--新制轉檔報表\期信基金\對帳單"
     destFileName = destFolder & "\" & GetFileNameWithoutFolder(sourceFileName)
     If InStr(1, sourceFileName, ".pdf") > 0 Then
         CopyFile fileNameSource:=sourceFileName, fileNameDest:=destFileName
