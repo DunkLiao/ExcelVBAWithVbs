@@ -6,7 +6,7 @@
 目前專案掃描到：
 
 - 📁 **16 個功能分類資料夾**
-- 🧩 **246 個 `.bas` VBA 範例模組**
+- 🧩 **259 個 `.bas` VBA 範例模組**
 - 🔎 **1 個本地瀏覽器查詢頁面**
 - 🧪 **Python + pytest 自動檢查工具**
 
@@ -21,6 +21,7 @@
 - 📁 合併或分割 Excel、CSV、文字檔、XML、JSON
 - 📄 將工作表、選取範圍、圖表或整本活頁簿匯出 PDF
 - 📧 操作 Outlook 郵件、附件、會議邀請、聯絡人與追蹤旗標
+- 📝 操作 Word 文件、填入書籤、插入圖表、批次保護與格式設定
 - 🖨️ 處理列印、雙面列印、PDF 與檔案工具
 - 🗄️ 連接資料庫、讀取組態、產生報表
 
@@ -86,7 +87,27 @@ frontend/index.html
 | 跨工作表合併資料 | `模組/MergeDataAcrossSheets` |
 | 匯出 PDF | `模組/ExporttoPDF` |
 | Outlook 郵件與行事曆自動化 | `模組/Outlook` |
+| Word 文件自動化 | `模組/Word` |
 | 通用工具模組 | `模組/Others` |
+
+---
+
+## 📝 Word 範例有哪些？
+
+`模組/Word` 目前包含匯出、合併、格式設定、浮水印、書籤填入、批注擷取等範例，適合想把 Word 文件工作自動化的人。
+
+常見範例包含：
+
+- 📤 將 Excel 資料匯出為 Word 表格
+- 🔄 批次取代 Word 文件中的文字
+- 🗂️ 合併多個 Word 文件為單一文件
+- 📄 批次將 Word 文件轉存為 PDF
+- 📋 將 Word 表格匯入 Excel 工作表
+- 🔖 以 Excel 資料填入 Word 書籤批次產生文件
+- 🏷️ 批次加入頁首頁尾或文字浮水印
+- 💬 擷取 Word 批注至 Excel 彙整
+- 📊 將 Excel 圖表插入 Word 文件
+- 🔐 批次設定或解除 Word 文件密碼保護
 
 ---
 
@@ -137,6 +158,7 @@ ExcelVBAWithVbs/
 | 使用情境 | 可能需要的參考 |
 |---|---|
 | Outlook 郵件、行事曆、聯絡人 | Microsoft Outlook xx.0 Object Library |
+| Word 文件操作 | Microsoft Word xx.0 Object Library |
 | 正規表示式 | Microsoft VBScript Regular Expressions 5.5 |
 | 檔案系統工具 | Microsoft Scripting Runtime |
 | 資料庫與檔案讀寫 | Microsoft ActiveX Data Objects |
