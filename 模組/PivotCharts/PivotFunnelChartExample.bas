@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "PivotFunnelChartExample"
 '*************************************************************************************
 '模組名稱: PivotFunnelChartExample
 '功能說明: 根據樞紐分析表建立漏斗圖 (Funnel Chart) 範例
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub CreatePivotFunnelChartExample()
     Dim ws          As Worksheet
@@ -16,6 +17,8 @@ Sub CreatePivotFunnelChartExample()
     Dim chtObj      As ChartObject
     Dim cht         As Chart
     Dim pc          As PivotCache
+    Dim i           As Integer
+    Dim data(1 To 5, 1 To 2) As Variant
 
     ' 建立資料工作表
     Set ws = ThisWorkbook.Sheets.Add
@@ -24,14 +27,12 @@ Sub CreatePivotFunnelChartExample()
     ws.Cells(1, 1).Value = "階段"
     ws.Cells(1, 2).Value = "金額"
 
-    Dim data(1 To 5, 1 To 2) As Variant
     data(1, 1) = "開發": data(1, 2) = 8000000
     data(2, 1) = "提案": data(2, 2) = 5500000
     data(3, 1) = "議價": data(3, 2) = 3200000
     data(4, 1) = "簽約": data(4, 2) = 1800000
     data(5, 1) = "交貨": data(5, 2) = 900000
 
-    Dim i As Integer
     For i = 1 To 5
         ws.Cells(i + 1, 1).Value = data(i, 1)
         ws.Cells(i + 1, 2).Value = data(i, 2)

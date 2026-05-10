@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "FunnelChartExample"
 '*************************************************************************************
 '模組名稱: FunnelChartExample
 '功能說明: 以 VBA 建立漏斗圖 (Funnel Chart) 範例
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub CreateFunnelChartExample()
     Dim ws          As Worksheet

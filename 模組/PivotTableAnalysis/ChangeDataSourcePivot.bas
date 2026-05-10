@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "ChangeDataSourcePivot"
 '*************************************************************************************
 '模組名稱: ChangeDataSourcePivot
 '功能說明: 以 VBA 動態變更樞紐分析表的資料來源範圍
@@ -7,17 +9,18 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub ChangeDataSourcePivot()
     Dim ws          As Worksheet
     Dim pt          As PivotTable
     Dim pc          As PivotCache
+    Dim ptSheet     As Worksheet
     Dim newSource   As String
     Dim srcSheet    As String
     Dim srcRange    As String
+    Dim updCount    As Integer
 
-    ' 取得使用者指定的樞紐分析表資料來源
+    ' 取得使用者指定的資料來源
     srcSheet = InputBox("請輸入資料來源工作表名稱：", "變更資料來源")
     If srcSheet = "" Then Exit Sub
 
@@ -29,10 +32,7 @@ Sub ChangeDataSourcePivot()
     newSource = "'" & srcSheet & "'!" & srcRange
 
     ' 對所有樞紐分析表更新資料來源
-    Dim ptSheet     As Worksheet
-    Dim updCount    As Integer
     updCount = 0
-
     For Each ptSheet In ThisWorkbook.Sheets
         For Each pt In ptSheet.PivotTables
             Set pc = ThisWorkbook.PivotCaches.Create( _

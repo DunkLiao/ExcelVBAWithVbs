@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "FilterByFormulaResult"
 '*************************************************************************************
 '模組名稱: FilterByFormulaResult
 '功能說明: 依據公式計算結果進行篩選，將符合條件的列複製至新工作表
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub FilterByFormulaResult()
     Dim ws          As Worksheet
@@ -15,11 +16,13 @@ Sub FilterByFormulaResult()
     Dim lastRow     As Long
     Dim lastCol     As Long
     Dim i           As Long
+    Dim c           As Long
     Dim resultRow   As Long
     Dim checkCol    As Long
     Dim threshold   As Double
     Dim colName     As String
     Dim inputVal    As String
+    Dim cellVal     As Double
 
     Set ws = ActiveSheet
     lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row
@@ -44,7 +47,6 @@ Sub FilterByFormulaResult()
 
     ' 找欄位索引
     checkCol = 0
-    Dim c As Long
     For c = 1 To lastCol
         If ws.Cells(1, c).Value = colName Then
             checkCol = c
@@ -73,7 +75,7 @@ Sub FilterByFormulaResult()
 
     ' 逐列以數值門檻判斷
     For i = 2 To lastRow
-        Dim cellVal As Double
+        cellVal = 0
         On Error Resume Next
         cellVal = CDbl(ws.Cells(i, checkCol).Value)
         On Error GoTo 0

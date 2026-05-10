@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "TextJoinFormulaExample"
 '*************************************************************************************
 '模組名稱: TextJoinFormulaExample
 '功能說明: 以 VBA 批次寫入 TEXTJOIN 公式範例
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub CreateTextJoinFormulaExample()
     Dim ws          As Worksheet
@@ -38,7 +39,7 @@ Sub CreateTextJoinFormulaExample()
 
     lastRow = 6
 
-    ' 批次寫入 TEXTJOIN 公式：合併姓名與部門
+    ' 批次寫入 TEXTJOIN 公式
     Dim r As Long
     For r = 2 To lastRow
         ws.Cells(r, 4).Formula = _

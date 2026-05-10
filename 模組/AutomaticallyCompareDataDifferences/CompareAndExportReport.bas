@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "CompareAndExportReport"
 '*************************************************************************************
 '模組名稱: CompareAndExportReport
 '功能說明: 比較兩個工作表的資料差異並將差異報告匯出至新工作表
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub CompareAndExportReport()
     Dim ws1         As Worksheet
@@ -24,6 +25,7 @@ Sub CompareAndExportReport()
     Dim maxRow      As Long
     Dim val1        As String
     Dim val2        As String
+    Dim cellVal     As Double
 
     sheet1Name = InputBox("請輸入第一個工作表名稱（舊資料）：", "比較工作表")
     If sheet1Name = "" Then Exit Sub

@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "ClearAllFormattingInWorkbook"
 '*************************************************************************************
 '模組名稱: ClearAllFormattingInWorkbook
 '功能說明: 清除活頁簿中所有工作表的儲存格格式設定（保留資料）
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub ClearAllFormattingInWorkbook()
     Dim ws          As Worksheet

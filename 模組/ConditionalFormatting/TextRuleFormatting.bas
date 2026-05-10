@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "TextRuleFormatting"
 '*************************************************************************************
 '模組名稱: TextRuleFormatting
 '功能說明: 以 VBA 建立以文字條件為基礎的條件式格式設定範例
@@ -7,16 +9,14 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub ApplyTextRuleFormatting()
     Dim ws          As Worksheet
     Dim rng         As Range
     Dim fc          As FormatCondition
+    Dim lastRow     As Long
 
     Set ws = ActiveSheet
-    ' 使用目前工作表的 A 欄資料
-    Dim lastRow As Long
     lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row
     If lastRow < 2 Then
         MsgBox "A 欄資料不足，請先輸入資料再執行。", vbExclamation, "提示"

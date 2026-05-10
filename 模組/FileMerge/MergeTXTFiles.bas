@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "MergeTXTFiles"
 '*************************************************************************************
 '模組名稱: MergeTXTFiles
 '功能說明: 合併指定資料夾中所有 TXT 純文字檔至一個工作表
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub MergeTXTFiles()
     Dim folderPath  As String

@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "CleanCurrencyData"
 '*************************************************************************************
 '模組名稱: CleanCurrencyData
 '功能說明: 自動清理儲存格中的貨幣符號、千分位符號，轉換為純數值
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub CleanCurrencyData()
     Dim ws          As Worksheet
@@ -36,8 +37,7 @@ Sub CleanCurrencyData()
             ' 移除常見貨幣符號
             cleaned = Replace(cleaned, "$", "")
             cleaned = Replace(cleaned, "NT$", "")
-            cleaned = Replace(cleaned, Chr(165), "")  ' ￥
-            cleaned = Replace(cleaned, Chr(8364), "") ' EUR sign fallback
+            cleaned = Replace(cleaned, Chr(165), "")  ' yen sign
             ' 移除千分位符號
             cleaned = Replace(cleaned, ",", "")
             ' 移除空白

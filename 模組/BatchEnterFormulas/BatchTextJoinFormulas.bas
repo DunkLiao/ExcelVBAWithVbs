@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "BatchTextJoinFormulas"
 '*************************************************************************************
 '模組名稱: BatchTextJoinFormulas
 '功能說明: 批次在指定欄位寫入 TEXTJOIN 公式，合併多欄文字
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub BatchTextJoinFormulas()
     Dim ws          As Worksheet
@@ -17,8 +18,8 @@ Sub BatchTextJoinFormulas()
     Dim outputCol   As Integer
     Dim delimiter   As String
     Dim i           As Long
-    Dim colLetters  As String
     Dim c           As Integer
+    Dim colLetters  As String
 
     Set ws = ActiveSheet
     lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row

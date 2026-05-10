@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "MergeAllVisibleSheets"
 '*************************************************************************************
 '模組名稱: MergeAllVisibleSheets
 '功能說明: 合併活頁簿中所有可見工作表的資料至彙總工作表（跳過隱藏工作表）
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub MergeAllVisibleSheets()
     Dim wsSummary       As Worksheet
@@ -55,6 +56,6 @@ Sub MergeAllVisibleSheets()
     Next ws
 
     wsSummary.Columns.AutoFit
-    MsgBox "所有可見工作表已合併至「彙總」工作表，共 " & (nextRow - 2) & " 筆資料。", _
+    MsgBox "所有可見工作表已合併至彙總工作表，共 " & (nextRow - 2) & " 筆資料。", _
            vbInformation, "完成"
 End Sub

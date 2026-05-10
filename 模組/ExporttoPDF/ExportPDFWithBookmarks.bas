@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "ExportPDFWithBookmarks"
 '*************************************************************************************
 '模組名稱: ExportPDFWithBookmarks
 '功能說明: 將活頁簿中每個工作表分別匯出為獨立 PDF，並以工作表名稱命名檔案
@@ -7,12 +9,12 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub ExportPDFWithBookmarks()
     Dim ws          As Worksheet
     Dim savePath    As String
     Dim pdfPath     As String
+    Dim safeName    As String
     Dim count       As Integer
 
     ' 選擇儲存資料夾
@@ -26,7 +28,6 @@ Sub ExportPDFWithBookmarks()
     For Each ws In ThisWorkbook.Sheets
         If ws.Visible = xlSheetVisible Then
             ' 清除非法字元作為檔名
-            Dim safeName As String
             safeName = ws.Name
             safeName = Replace(safeName, "/", "-")
             safeName = Replace(safeName, "\\", "-")

@@ -1,3 +1,5 @@
+Option Explicit
+Attribute VB_Name = "SplitByKeyword"
 '*************************************************************************************
 '模組名稱: SplitByKeyword
 '功能說明: 依據指定欄位中的關鍵字，將資料列切割至不同工作表
@@ -7,7 +9,6 @@
 '撰寫日期: 2026/5/10
 '
 '*************************************************************************************
-Option Explicit
 
 Sub SplitByKeyword()
     Dim ws          As Worksheet
@@ -18,7 +19,11 @@ Sub SplitByKeyword()
     Dim keyword     As String
     Dim colIndex    As Long
     Dim colName     As String
+    Dim shName      As String
+    Dim tgtRow      As Long
     Dim dict        As Object
+    Dim key         As Variant
+    Dim c           As Long
 
     Set ws = ActiveSheet
     lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row
@@ -30,7 +35,6 @@ Sub SplitByKeyword()
 
     ' 找欄位索引
     colIndex = 0
-    Dim c As Long
     For c = 1 To lastCol
         If ws.Cells(1, c).Value = colName Then
             colIndex = c
@@ -54,9 +58,7 @@ Sub SplitByKeyword()
     Next i
 
     ' 為每個關鍵字建立工作表並複製標題
-    Dim key As Variant
     For Each key In dict.Keys
-        Dim shName As String
         shName = Left(CStr(key), 31)
         On Error Resume Next
         Set wsNew = ThisWorkbook.Sheets(shName)
@@ -75,7 +77,6 @@ Sub SplitByKeyword()
         keyword = CStr(ws.Cells(i, colIndex).Value)
         shName = Left(keyword, 31)
         Set wsNew = ThisWorkbook.Sheets(shName)
-        Dim tgtRow As Long
         tgtRow = wsNew.Cells(wsNew.Rows.Count, 1).End(xlUp).Row + 1
         ws.Rows(i).Copy wsNew.Rows(tgtRow)
     Next i
