@@ -1,0 +1,50 @@
+'*************************************************************************************
+'家舱嘿: TextJoinFormulaExample
+'弧:  VBA уΩ糶 TEXTJOIN そΑ絛ㄒ
+'
+'舦┮Τ: Dunk
+'祘Α砞璸: Dunk
+'级糶ら戳: 2026/5/10
+'
+'*************************************************************************************
+Option Explicit
+
+Sub CreateTextJoinFormulaExample()
+    Dim ws          As Worksheet
+    Dim lastRow     As Long
+    Dim i           As Long
+
+    Set ws = ThisWorkbook.Sheets.Add
+    ws.Name = "TextJoinDemo"
+
+    ' 糶ボ絛戈逆
+    ws.Cells(1, 1).Value = "﹎"
+    ws.Cells(1, 2).Value = ""
+    ws.Cells(1, 3).Value = "场"
+    ws.Cells(1, 4).Value = "ㄖ"
+
+    Dim demo(1 To 5, 1 To 3) As String
+    demo(1, 1) = "": demo(1, 2) = "": demo(1, 3) = "穨叭场"
+    demo(2, 1) = "": demo(2, 2) = "地": demo(2, 3) = "癩叭场"
+    demo(3, 1) = "眎": demo(3, 2) = "瓣": demo(3, 3) = "戈癟场"
+    demo(4, 1) = "朝": demo(4, 2) = "в环": demo(4, 3) = "戈场"
+    demo(5, 1) = "狶": demo(5, 2) = "ㄎ籘": demo(5, 3) = "︽現场"
+
+    For i = 1 To 5
+        ws.Cells(i + 1, 1).Value = demo(i, 1)
+        ws.Cells(i + 1, 2).Value = demo(i, 2)
+        ws.Cells(i + 1, 3).Value = demo(i, 3)
+    Next i
+
+    lastRow = 6
+
+    ' уΩ糶 TEXTJOIN そΑㄖ﹎籔场
+    Dim r As Long
+    For r = 2 To lastRow
+        ws.Cells(r, 4).Formula = _
+            "=TEXTJOIN("" "", TRUE, A" & r & ", B" & r & ", ""["" & C" & r & " & ""]"")"
+    Next r
+
+    ws.Columns("A:D").AutoFit
+    MsgBox "TEXTJOIN そΑΘ糶", vbInformation, "ЧΘ"
+End Sub
