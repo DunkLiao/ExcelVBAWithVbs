@@ -1,6 +1,4 @@
-# 在所有對應資料夾下，依功能說明建立一個範例程式
-# 範例程式不得與現有資料夾底下的範例程式重複
-
+# 在下列所有對應資料夾下，依功能說明建立一個範例程式
 | 功能說明 | 對應資料夾 |
 |----------|------------|
 | 一般圖表 | `\模組\ChartsNormal` |
@@ -17,6 +15,16 @@
 | 自動比較資料差異 | `\模組\AutomaticallyCompareDataDifferences` |
 | 自動清理數據 | `\模組\AutomaticallyCleanData` |
 | 依據多重條件篩選資料 | `\模組\FilterDataBasedonMultipleConditions` |
+
+# 範例程式不得與現有資料夾底下的範例程式重複
+
+# 撰寫所有範例程式完畢後，執行RunTests.bat，驗證是否全數通過
+ - 當全數通過
+   1.更新README.md裡面的程式總數
+   2.執行.\frontend\build.bat
+ - 當有不通過時，須告知使用者進行處理
+
+
 
 
 
