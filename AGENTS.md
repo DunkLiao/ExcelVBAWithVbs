@@ -242,3 +242,9 @@ data.decode("cp950")
 - Outlook 郵件處理
 - 批次資料整理
 - 企業內部流程工具開發
+
+---
+
+# git注意事項
+
+- 除非我主要要求git commit & push，不得擅自執行
