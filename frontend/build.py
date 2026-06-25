@@ -112,14 +112,14 @@ def build():
     # 輸出 data.json
     with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    print(f"✓ 輸出：{OUTPUT_JSON}（{total_folders} 資料夾，{total_files} 檔案）")
+    print(f"[OK] 輸出：{OUTPUT_JSON}（{total_folders} 資料夾，{total_files} 檔案）")
 
     # 輸出 app-data.js（供 file:// 本地開啟使用，避免 CORS）
     js_content = "// 由 build.py 自動產生，請勿手動修改\n"
     js_content += "window.VBA_DATA = " + json.dumps(data, ensure_ascii=False) + ";\n"
     with open(OUTPUT_JS, "w", encoding="utf-8") as f:
         f.write(js_content)
-    print(f"✓ 輸出：{OUTPUT_JS}")
+    print(f"[OK] 輸出：{OUTPUT_JS}")
     print("完成！請用瀏覽器開啟 frontend/index.html")
 
 
